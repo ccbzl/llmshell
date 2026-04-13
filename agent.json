@@ -1,0 +1,95 @@
+{
+  "MAX_ROUNDS": 5,
+  "models": {
+    "default_model": "moonshot_kimi",
+    "ollama_qwen3": {
+      "provider": "ollama",
+      "type": "OllamaInterface",
+      "model": "qwen3:4b",
+      "api_endpoint": "http://localhost:11434/api",
+      "parameters": {
+        "temperature": 0.7,
+        "num_predict": 2048
+      }
+    },
+    "ollama_deepseek": {
+      "provider": "ollama",
+      "type": "OllamaInterface",
+      "model": "deepseek-r1:14b",
+      "api_endpoint": "http://localhost:11434/api",
+      "parameters": {
+        "temperature": 0.7,
+        "num_predict": 2048
+      }
+    },
+    "moonshot_kimi": {
+      "provider": "moonshot",
+      "type": "MoonshotInterface",
+      "model": "kimi-k2.5",
+      "api_endpoint": "https://api.moonshot.cn/v1",
+      "api_key_env": "KIMI_API_KEY",
+      "parameters": {
+        "temperature": 1.0,
+        "max_tokens": 16000
+      }
+    },
+    "moonshot_v1": {
+      "provider": "moonshot",
+      "type": "MoonshotInterface",
+      "model": "moonshot-v1-8k",
+      "api_endpoint": "https://api.moonshot.cn/v1",
+      "api_key_env": "KIMI_API_KEY",
+      "parameters": {
+        "temperature": 0.7,
+        "max_tokens": 2048
+      }
+    }
+  },
+  "mcpServers": {
+    "brave-search": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-brave-search"
+      ],
+      "env": {
+        "BRAVE_API_KEY": "your-brave-api-key-here"
+      }
+    },
+    "calculator": {
+      "type": "stdio",
+      "command": "python3",
+      "args": [
+        "calculator_server.py"
+      ],
+      "env": {}
+    },
+    "MySQL": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "--from",
+        "mysql-mcp-server",
+        "mysql_mcp_server"
+      ],
+      "env": {
+        "MYSQL_HOST": "localhost",
+        "MYSQL_PORT": "3306",
+        "MYSQL_USER": "dbroot",
+        "MYSQL_PASSWORD": "world123",
+        "MYSQL_DATABASE": "world"
+      }
+    },
+    "Playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@executeautomation/playwright-mcp-server"
+      ],
+      "env": {
+        "PLAYWRIGHT_BROWSERS_PATH": "/Users/mac/Library/Caches/ms-playwright"
+      }
+    }
+  }
+}

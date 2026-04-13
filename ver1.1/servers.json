@@ -1,0 +1,7 @@
+{
+  "calculator": {
+    "command": "python3",
+    "args": ["calculator_server.py"],
+    "env": {}
+  }
+}
